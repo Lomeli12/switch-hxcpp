@@ -146,8 +146,6 @@ class BuildTool
 
       include("toolchain/setup.xml");
 
-
-
       if (mDefines.exists("toolchain"))
       {
          if (!mDefines.exists("BINDIR"))
@@ -1857,7 +1855,14 @@ class BuildTool
          defines.set("apple","apple");
          defines.set("BINDIR","watchsimulator");
       }
-
+      else if (defines.exists("libnx"))
+      {
+         defines.set("toolchain", "linux");
+         defines.set("xcompile", "1");
+         defines.set("linux", "linux");
+         defines.set("HXCPP_LINUX_ARM64", "1");
+         defines.set("HXCPP_NO_M32", "1");
+      }
       else if (defines.exists("android"))
       {
          defines.set("toolchain","android");
